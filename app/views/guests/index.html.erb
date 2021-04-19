@@ -1,0 +1,36 @@
+<h1>VIP Guest List</h1>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<%= button_to "Send Confirmation Email", action: "confirmation_email" %>
+
+<p>
+    Download:
+    <%= link_to "CSV", guests_path(format: "csv") %>
+</p>
+
+<table id="guests">
+    <tr>
+        <th>UID</th>
+        <th>Guest Name</th>
+        <th>Guest Email</th>
+    </tr>
+
+<% @guests.each do |guest| %>
+    <tr>
+        <td> <%= guest.uid%></td>
+        <td> <%= guest.name%></td>
+        <td> <%= guest.email%></td>
+    </tr>
+<% end %>
+</table>
+
+<h2>Import Guests</h2>
+<%= form_tag import_guests_path, multipart: true do%>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+<% end %>
