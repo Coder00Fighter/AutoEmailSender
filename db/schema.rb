@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20210416004020) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "guests", force: :cascade do |t|
     t.string "uid"
     t.string "name"
